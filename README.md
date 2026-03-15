@@ -132,16 +132,16 @@ This section demonstrates the step-by-step lifecycle of the project, highlightin
 
 ### 1. Initial Dataset Discrepancy (The Domain Gap)
 Before adaptation, the source (Asian/US Signs) and target (German Signs) datasets had completely different class distributions and indexing. This raw mismatch is the primary cause of model failure during cross-domain deployment.
-!image[alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/dataset.png )
+![image alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/dataset.png )
 
 ### 2. Configuration & Label Alignment 
 To prevent `IndexError` and tensor mismatches during Transfer Learning, the target dataset's YAML configuration and label matrices were programmatically synchronized to match the source domain's architecture. 
-!image[alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/dataAlignment.png)
+![image alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/dataAlignment.png)
 
 ### 3. Comparative Analysis (Quantitative Proof)
 After fine-tuning the baseline model on the target data with a conservative learning rate, the system generated this automated report. The massive jump in mAP explicitly quantifies the successful mitigation of the Domain Shift.
-!image[alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/report.png)
+![image alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/report.png)
 
 ### 4. Classification Auditing (Visual Proof)
 The final adapted model's predictions were evaluated using a Confusion Matrix to ensure inter-class feature ambiguities.
-!image[alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/confusion.png)
+![image alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/confusion.png)
