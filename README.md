@@ -9,6 +9,10 @@ One of the most critical challenges in deploying computer vision systems is the 
 Initially, a baseline YOLOv8 model trained exclusively on US/Generic road signs was subjected to Zero-Shot Testing on a target German dataset (GTSRB), yielding a catastrophic Mean Average Precision (mAP) of just 1.13%. To mitigate this, a precision-tuned Transfer Learning and data synchronization pipeline was engineered. By implementing a conservative learning rate strategy (to prevent the catastrophic forgetting of original spatial features) and utilizing Mixed-Precision (FP16) training for hardware efficiency, the model successfully adapted to the new domain. The final adapted system bridged the inter-class feature ambiguities, boosting the robust detection accuracy to an exceptional 97.33% mAP, proving its viability for scalable, cross-domain real-world deployment.
 
 ```
+
+                ARCHITECTURE OF THE PROJECT
+             -----------------------------------
+
 +---------------------------------------------------------------+
 |       CROSS-DOMAIN TRAFFIC SIGN DETECTION ARCHITECTURE        |
 +---------------------------------------------------------------+
@@ -122,3 +126,22 @@ Initially, a baseline YOLOv8 model trained exclusively on US/Generic road signs 
 +---------------------------------------------------------------+
 
 ```
+## Project Execution Flow & Results
+
+This section demonstrates the step-by-step lifecycle of the project, highlighting the initial data mismatch, the engineering solution, and the final quantitative results.
+
+### 1. Initial Dataset Discrepancy (The Domain Gap)
+Before adaptation, the source (Asian/US Signs) and target (German Signs) datasets had completely different class distributions and indexing. This raw mismatch is the primary cause of model failure during cross-domain deployment.
+*(Yahan apna initial dataset details wala screenshot drag & drop karein)*
+
+### 2. Configuration & Label Alignment 
+To prevent `IndexError` and tensor mismatches during Transfer Learning, the target dataset's YAML configuration and label matrices were programmatically synchronized to match the source domain's architecture. 
+*(Yahan wo screenshot daalein jisme dono classes same/align ho gayi hain)*
+
+### 3. Comparative Analysis (Quantitative Proof)
+After fine-tuning the baseline model on the target data with a conservative learning rate, the system generated this automated report. The massive jump in mAP explicitly quantifies the successful mitigation of the Domain Shift.
+*(Yahan apne Colab ke text output ya 'Final_Project_Report.txt' ka screenshot daalein jisme mAP 1.13% se 97.33% hua hai)*
+
+### 4. Classification Auditing (Visual Proof)
+The final adapted model's predictions were evaluated using a Confusion Matrix to ensure inter-class feature ambiguities (e.g., confusing a 'Speed Limit 30' sign with 'Speed Limit 50') were resolved.
+*(Yahan apna Confusion Matrix wala .png image drag & drop karein)*
