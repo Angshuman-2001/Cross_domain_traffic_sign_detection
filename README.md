@@ -44,7 +44,7 @@ Initially, a baseline YOLOv8 model trained exclusively on US/Generic road signs 
                                 |
                                 V
 +---------------------------------------------------------------+
-|       PHASE 2: DATA & CONFIGURATION ALIGNMENT (CRITICAL)      |
+|       PHASE 2: DATA & CONFIGURATION ALIGNMENT                 |
 +---------------------------------------------------------------+
 |  [1] Repair File Paths in Google Drive                        |
 |      (Update data.yaml paths for absolute Colab/Drive paths)  |
@@ -128,7 +128,7 @@ Initially, a baseline YOLOv8 model trained exclusively on US/Generic road signs 
 ```
 ## Key Results & Project Highlights
 
-This section demonstrates the step-by-step lifecycle of the project, highlighting the initial data mismatch, the engineering solution, and the final quantitative results.
+This section highlights the most critical outputs from the notebook. These selected snapshots demonstrate the core problem (Domain Shift), the engineering fix, and the final quantitative improvements achieved through adaptation.
 
 ### 1. Datasets details(The Domain Gap)
 A snapshot of the initial dataset details. This highlights the fundamental differences in class distributions between the Source (US Signs) and Target (German Signs) domains before any adaptation was applied.
