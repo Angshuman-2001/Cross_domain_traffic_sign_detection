@@ -126,22 +126,38 @@ Initially, a baseline YOLOv8 model trained exclusively on US/Generic road signs 
 +---------------------------------------------------------------+
 
 ```
-## Project Execution Flow & Results
+## Key Results & Project Highlights
 
 This section demonstrates the step-by-step lifecycle of the project, highlighting the initial data mismatch, the engineering solution, and the final quantitative results.
 
-### 1. Initial Dataset Discrepancy (The Domain Gap)
-Before adaptation, the source (Asian/US Signs) and target (German Signs) datasets had completely different class distributions and indexing. This raw mismatch is the primary cause of model failure during cross-domain deployment.
+### 1. Datasets details(The Domain Gap)
+A snapshot of the initial dataset details. This highlights the fundamental differences in class distributions between the Source (US Signs) and Target (German Signs) domains before any adaptation was applied.
 ![image alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/dataset.png )
 
-### 2. Configuration & Label Alignment 
-To prevent `IndexError` and tensor mismatches during Transfer Learning, the target dataset's YAML configuration and label matrices were programmatically synchronized to match the source domain's architecture. 
+### 2. Data alignment & synchronization
+Initially, the Source domain (US Signs) contained **21 classes**, while the Target domain (German GTSRB) had **47 classes**. Passing this raw data directly to the neural network would cause an immediate `IndexError` (tensor shape mismatch) during Transfer Learning. This output demonstrates the successful programmatic synchronization, where the target dataset's labels and YAML configurations were filtered and aligned to match the exact **21 classes** of the source domain, ensuring a stable cross-domain fine-tuning pipeline.
 ![image alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/dataAlignment.png)
 
-### 3. Comparative Analysis (Quantitative Proof)
-After fine-tuning the baseline model on the target data with a conservative learning rate, the system generated this automated report. The massive jump in mAP explicitly quantifies the successful mitigation of the Domain Shift.
+### 3. Final comparative analysis report
+The automated project report generated after fine-tuning. It explicitly quantifies the successful mitigation of the Domain Shift, showcasing the significant jump in mAP from the baseline to the adapted model.
 ![image alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/report.png)
 
-### 4. Classification Auditing (Visual Proof)
-The final adapted model's predictions were evaluated using a Confusion Matrix to ensure inter-class feature ambiguities.
+### 4. Classification auditing (confusing report)
+The final Confusion Matrix of the adapted model. This visual proof confirms that the model successfully resolved inter-class feature ambiguities within the new target domain.
 ![image alt](https://github.com/Angshuman-2001/Cross_domain_traffic_sign_detection/blob/778d0af48d7f232b60f388b44646bf99fb16b6f0/confusion.png)
+
+
+## Execution Environment & Generated Artifacts
+
+**Note on Execution & Storage:**
+This project involves heavy computer vision datasets and deep learning models. It was developed and executed in **Google Colab** utilizing the NVIDIA T4 GPU. To ensure persistent storage across sessions and avoid repeated downloading/training, the environment was explicitly mounted to a dedicated **Google Drive** directory.
+
+During execution, the system dynamically fetches data via the **Roboflow API** and automatically generates the following permanent artifacts directly in Google Drive:
+
+* **`road-signs-1/`**: The Source dataset (Generic/US Road Signs) downloaded via Roboflow.
+* **`traffic-sign-detection-gtsrb-1/`**: The Target dataset (German Traffic Signs - GTSRB) downloaded via Roboflow.
+* **`runs/`**: The core Ultralytics YOLO output directory. This contains all the training runs, validation metrics, confusion matrices, and the final fine-tuned weights (`best.pt`) for both the baseline and adapted models.
+* **`yolov8n.pt` & `yolo26n.pt`**: The base pre-trained YOLO nano weight files downloaded to initialize the neural network before transfer learning.
+* **`Final_Project_Report.txt`**: A synthesized text report documenting the comparative analysis (Baseline mAP vs Adapted mAP) and the final quantitative improvement.
+
+By establishing this persistent drive structure, the system ensures that raw datasets and trained checkpoints are preserved, allowing for seamless inference without restarting the heavy data ingestion pipeline.
