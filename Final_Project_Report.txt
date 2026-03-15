@@ -1,0 +1,17 @@
+
+======================================================
+       PROJECT 3: CROSS-DOMAIN TRAFFIC DETECTION
+       Comparative Analysis Report
+======================================================
+1. Strategy Used:      Transfer Learning (Fine-Tuning)
+2. Source Data:        Generic/US Road Signs
+3. Target Data:        German Traffic Signs (GTSRB)
+
+--- PERFORMANCE METRICS (mAP@0.50) ---
+[A] Baseline Model:    0.0113 (Trained only on Source)
+[B] Adapted Model:     0.9733 (After Domain Adaptation)
+
+--- RESULTS ---
+>> Domain Gap Reduction: +0.9619 mAP
+>> Percentage Increase:  8481.1%
+======================================================
