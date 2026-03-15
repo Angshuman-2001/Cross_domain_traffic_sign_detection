@@ -4,7 +4,7 @@
 
 ## About the project
 
-One of the most critical challenges in deploying computer vision systems is the Domain Shift—where an AI model trained in one environment drastically fails when deployed in another. This project mathematically quantifies and solves this 'Synthetic-to-Real' performance gap in autonomous driving systems.
+One of the most critical challenges in deploying computer vision systems is the Domain Shift, where an AI model trained in one environment drastically fails when deployed in another. This project mathematically quantifies and solves this 'Synthetic-to-Real' performance gap in autonomous driving systems.
 
 Initially, a baseline YOLOv8 model trained exclusively on US/Generic road signs was subjected to Zero-Shot Testing on a target German dataset (GTSRB), yielding a catastrophic Mean Average Precision (mAP) of just 1.13%. To mitigate this, a precision-tuned Transfer Learning and data synchronization pipeline was engineered. By implementing a conservative learning rate strategy (to prevent the catastrophic forgetting of original spatial features) and utilizing Mixed-Precision (FP16) training for hardware efficiency, the model successfully adapted to the new domain. The final adapted system bridged the inter-class feature ambiguities, boosting the robust detection accuracy to an exceptional 97.33% mAP, proving its viability for scalable, cross-domain real-world deployment.
 
